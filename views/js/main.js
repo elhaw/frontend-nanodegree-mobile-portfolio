@@ -521,7 +521,6 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
   }
 }
-  requestAnimationFrame(updatePositions);
 
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
@@ -530,7 +529,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i <25; i++) {
+  for (var i = 0; i <50; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
