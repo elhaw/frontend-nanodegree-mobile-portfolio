@@ -448,8 +448,9 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
+  var allElements = document.getElementsByClassName("randomPizzaContainer").length;
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.getElementsByClassName("randomPizzaContainer").length; i++) {
+    for (var i = 0; i < allElements; i++) {
       var dx = determineDx(document.getElementsByClassName("randomPizzaContainer")[i], size);
       var newwidth = (document.getElementsByClassName("randomPizzaContainer")[i].offsetWidth + dx) + 'px';
       document.getElementsByClassName("randomPizzaContainer")[i].style.width = newwidth;
@@ -505,9 +506,11 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   var items = document.getElementsByClassName('mover');
   var itemsLength = items.length;
   var scrollValue = document.body.scrollTop / 1250;
-  for (var i = 0; i < itemsLength; i++) {
+  for (var i = 0; i < itemsLength ; i++) {
     var phase = Math.sin((scrollValue) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    // items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    items[i].style.transform = "translateX(" + (items[i].basicLeft + 100 *  Math.sin((scrollValue) + (i % 5)) % window.innerWidth) + "px)" ;
+
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -518,7 +521,6 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   if (frame % 10 === 0) {
     var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
     logAverageFrame(timesToUpdatePosition);
-
   }
 }
 
@@ -528,7 +530,7 @@ window.addEventListener('scroll', updatePositions);
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
- var s = 256;
+  var s = 256;
   for (var i = 0; i <50; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
@@ -537,7 +539,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    document.getElementById("movingPizzas1").appendChild(elem);
   }
   updatePositions();
 
