@@ -509,7 +509,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   for (var i = 0; i < itemsLength ; i++) {
     var phase = Math.sin((scrollValue) + (i % 5));
     // items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-    items[i].style.transform = "translateX(" + (items[i].basicLeft + 100 *  Math.sin((scrollValue) + (i % 5)) % window.innerWidth) + "px)" ;
+    items[i].style.transform = "translateX(" + ( -1 * items[i].basicLeft + 100 *  Math.sin((scrollValue) + (i % 5)) % 500) + "px)" ;
 
   }
 
