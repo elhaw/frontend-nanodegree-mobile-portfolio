@@ -450,13 +450,14 @@ var resizePizzas = function(size) {
    
   function changePizzaSizes(size) {
   	
-  	  var allElements = document.getElementsByClassName("randomPizzaContainer").length;
+  	 var allElements = document.getElementsByClassName("randomPizzaContainer").length;
+  	 var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
      var dx = determineDx(document.getElementsByClassName("randomPizzaContainer")[allElements -1 ], size);
    	 var newwidth = (document.getElementsByClassName("randomPizzaContainer")[allElements -1 ].offsetWidth + dx) + 'px';
       
       for (var i = 0; i < allElements; i++) {
 
-            document.getElementsByClassName("randomPizzaContainer")[i].style.width = newwidth;
+            randomPizzas[i].style.width = newwidth;
     }
   }
   window.requestAnimationFrame(function() {
