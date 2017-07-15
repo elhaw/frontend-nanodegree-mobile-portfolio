@@ -89,6 +89,7 @@ First of all, install the dependencies to run this website.
 + [Preload Styles and Scripts to Improve Load Times](https://jonbeebe.net/2017/07/preload-styles-and-scripts-to-improve-load-times/).
 + [Online Markdown editor](http://dillinger.io/).
 ### Optimization Tips and Tricks
+---
 + [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
 + [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
 + [Optimizing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path.html "optimize the crp!")
