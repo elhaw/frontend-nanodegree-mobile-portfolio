@@ -443,21 +443,24 @@ var resizePizzas = function(size) {
 
     var newSize = sizeSwitcher(size);
     var dx = (newSize - oldSize) * windowWidth;
-
     return dx;
   }
 
   // Iterates through pizza elements on the page and changes their widths
-  var allElements = document.getElementsByClassName("randomPizzaContainer").length;
+    var allElements = document.getElementsByClassName("randomPizzaContainer").length;
   function changePizzaSizes(size) {
+      var dx = determineDx(document.getElementsByClassName("randomPizzaContainer")[allElements -1 ], size);
+      var newwidth = (document.getElementsByClassName("randomPizzaContainer")[allElements -1 ].offsetWidth + dx) + 'px';
     for (var i = 0; i < allElements; i++) {
-      var dx = determineDx(document.getElementsByClassName("randomPizzaContainer")[i], size);
-      var newwidth = (document.getElementsByClassName("randomPizzaContainer")[i].offsetWidth + dx) + 'px';
+      
       document.getElementsByClassName("randomPizzaContainer")[i].style.width = newwidth;
+
+      console.log(allElements);
     }
   }
-
-  changePizzaSizes(size);
+window.requestAnimationFrame(function() {
+      changePizzaSizes(size);
+        });
 
   // User Timing API is awesome
   window.performance.mark("mark_end_resize");
@@ -509,7 +512,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   for (var i = 0; i < itemsLength ; i++) {
     var phase = Math.sin((scrollValue) + (i % 5));
     // items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-    items[i].style.transform = "translateX(" + ( -1 * items[i].basicLeft + 100 *  Math.sin((scrollValue) + (i % 5)) % 500) + "px)" ;
+    items[i].style.transform = "translateX(" + ( -1 * items[i].basicLeft + 100 *  Math.sin((scrollValue) + (i % 5)) % window.innerWidth) + "px)" ;
 
   }
 
@@ -527,6 +530,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
 
+
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
@@ -541,6 +545,8 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.getElementById("movingPizzas1").appendChild(elem);
   }
+  window.requestAnimationFrame(function() {
   updatePositions();
+        });
 
 }); 
